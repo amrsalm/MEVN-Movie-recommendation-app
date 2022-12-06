@@ -28,7 +28,7 @@ mongoose.connect(
   
 
 app.use('/api/posts', require("./routes/routes"));
-if(process.env.NODE_ENV=='production'){
+if(process.env.NODE_ENV==='production'){
     app.use(express.static(__dirname+'/dis/'));
     app.get('*',(req,res)=>{
         res.sendFile(__dirname+'/dist/index.html');
