@@ -4,6 +4,7 @@ const express =require('express');
 const mongoose =require('mongoose');
 const cors =require('cors');
 const app =express();
+const port = process.env.PORT || 5000
 //middlewares
 app.use(cors());
 app.use(express.json());
@@ -32,4 +33,4 @@ if(process.env.NODE_ENV==='production'){
         res.sendFile(__dirname+'/dist/index.html');
     })
 }
-app.listen(process.env.PORT || 5000,()=> console.log(`server running at http://localhost:${port}`, ))
+app.listen(port,()=> console.log(`server running at http://localhost:${port}`, ))
