@@ -27,8 +27,6 @@ module.exports=class api{
     //create post
     static async createPost(req,res){
         const post = req.body;
-        const imagename= req.file.filename;
-        post.image = imagename;
         try{
             await Post.create(post);
             res.status(201).json({message:"Post Created Successfully!"})
@@ -40,22 +38,7 @@ module.exports=class api{
     //update post
     static async updatePost(req,res){
         const id = req.params.id;
-        let new_image='';
-        if(req.file){
-            new_image = req.file.filename;
-            
-        try{
-            FileSystem.unlinkSync('./uploads'+req.body.old_image);
-        }
-        catch(err){
-            console.log(err);
-        }
-    }    
-        else{
-            new_image=req.body.old_image;
-        }
         const newPost = req.body;
-        newPost.image = new_image;
          try{
             await Post.findByIdAndUpdate(id, newPost);
             res.status(200).json({message: "Post Updated Successfully!"})
